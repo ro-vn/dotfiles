@@ -1,0 +1,70 @@
+[user]
+	name = Ro Ngoc Vo
+	email = ngocro208@gmail.com
+[core]
+	editor = nano
+	excludesfile = /Users/nrvo/.gitignore
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    d = diff # show changes in the working directory (not including index)
+    dt = difftool
+    ds = diff --staged # show changes in the index only (not working directory)
+    dts = difftool --staged
+     
+    unstage = reset HEAD # un-add files from index (tracking)
+    uncommit = reset --soft HEAD^ # go back one commit, put changes into your working dir and index
+    amend = commit --amend # fix last commit
+    ac = commit --amend -C HEAD # amend and reuse message
+          
+    b = branch -avv # show commit messages on branch list
+    t = tag -l # show commit messages on tag list
+    rv = remote -v # show urls of remotes
+ 
+    # Handy shortcuts for rebasing
+    rc = rebase --continue
+    rs = rebase --skip
+    ra = rebase --abort
+ 
+    # Handy shortcuts for merging
+    ma = merge --abort
+ 
+    # copy a commit from another branch with source info
+    cp = cherry-pick -x
+ 
+    # create a new branch (mnemonic: "git new branch branchname...")
+    nb = checkout -b
+ 
+    # Better log formatting
+    changes = log --pretty=format:'%Cred%h%Creset -%C(black)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --name-status
+    filelog = log -p # show changes to a file
+    outgoing = log -p origin/master..master # outgoing changes (in local, but not origin)
+    l = log --pretty=format:'%C(red bold)%h%Creset -%C(yellow)%d%Creset %s %C(green bold)(%ci) %C(magenta bold)<%an>%Creset'
+    lg = !git l --graph
+    lga = !git lg --exclude=refs/notes/* --all
+    lr = log --pretty=raw -1
+    cll = config --list --local
+    cl = config --list
+    rhu = reset --hard @{upstream}
+    rhh = reset --hard HEAD
+    rsu = reset --soft @{upstream}
+    rbu = rebase @{upstream}
+     
+    # Shortcuts for conflict resolution
+    ours = "!f() { git co --ours $@ && git add $@; }; f"
+    theirs = "!f() { git co --theirs $@ && git add $@; }; f"
+     
+    alias = config --get-regexp alias.*
+    fb = "!f() { git checkout -b feature/$1_$USERNAME; }; f"
+    lmb = "!f() { git branch -avv | grep -i $USERNAME; }; f"
+     
+    # List all refs sorted by commit date
+    refs = for-each-ref --sort=committerdate --format='%(color:red bold)%(refname:short)%(color:reset)  %(color:yellow)%(committerdate:relative)%(color:reset)  %(color:magenta bold)%(authorname)%(color:reset)  %(color:green)%(objectname:short)%(color:reset)  %(contents:subject)'
+     
+    # List all remote tracking branches sorted by commit date (rbs = remote branches sorted)
+    rbs = !git refs refs/remotes
+     
+    # List all local branches sorted by commit date (lbs = local branches sorted)
+    lbs = !git refs refs/heads

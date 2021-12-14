@@ -1,0 +1,27 @@
+version: "3.1"
+
+services:
+  app:
+    container_name: rnvo-mongo
+    restart: always
+    build: ./
+    ports:
+      - "80:3000"
+    volumes:
+      - .:/norostudy
+    links:
+      - mongo
+  mongo:
+    image: mongo
+    restart: always
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME: root
+      - MONGO_INITDB_ROOT_PASSWORD: 1200
+    volumes:
+      - ./backup:/backup
+    network_mode: bridge
+    ports:
+      - "27017:27017"
+  
+  
